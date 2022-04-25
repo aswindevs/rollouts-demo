@@ -1,0 +1,16 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AnalysisTemplate
+metadata:
+  name: canary-demo
+spec:
+  args:
+  - name: api-url
+    value: http://example/measure
+  metrics:
+  - name: webmetric
+    successCondition: result == 'true'
+    provider:
+      web:
+        # placeholders are resolved when an AnalysisRun is created
+        url: "{{ args.api-url }}"
+        jsonPath: "{$.results.ok}"

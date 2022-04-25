@@ -27,9 +27,15 @@ spec:
             cpu: 5m
   strategy:
     canary:
+      analysis:
+        templates:
+          - templateName: canary-demo
+        args:
+          - name: api-url
+            value: http://34.111.87.47
       steps:
       - setWeight: 20
-      - pause: {}
+      - pause: {20}
       - setWeight: 40
       - pause: {duration: 10}
       - setWeight: 60
