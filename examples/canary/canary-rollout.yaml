@@ -32,7 +32,7 @@ spec:
           - templateName: canary-demo
         args:
           - name: api-url
-            value: http://34.111.87.47/health1
+            value: http://34.111.87.47/
       steps:
       - setWeight: 20
       - pause: {duration: 20}
