@@ -35,7 +35,7 @@ spec:
             value: http://34.111.87.47
       steps:
       - setWeight: 20
-      - pause: {20}
+      - pause: {}
       - setWeight: 40
       - pause: {duration: 10}
       - setWeight: 60
