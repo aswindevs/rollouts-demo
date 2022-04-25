@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: canary-demo
-        image: argoproj/rollouts-demo:yellow
+        image: argoproj/rollouts-demo:blue
         imagePullPolicy: Always
         ports:
         - name: http
@@ -32,7 +32,7 @@ spec:
           - templateName: canary-demo
         args:
           - name: api-url
-            value: http://34.111.87.47/
+            value: http://34.111.87.47/sdadas
       steps:
       - setWeight: 20
       - pause: {duration: 20}
