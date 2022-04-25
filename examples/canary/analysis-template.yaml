@@ -5,7 +5,7 @@ metadata:
 spec:
   args:
   - name: api-url
-    value: http://34.111.87.47
+    value: http://34.111.87.47/health1
   metrics:
   - name: webmetric
     successCondition: result == 'true'
