@@ -23,7 +23,8 @@ spec:
         app: nginx
     spec:
       containers:
-      - image: gcr.io/gcp-poc-321808/aswin@sha256:7545d80f3ec710496703cbf6d9ac13c2e1d2406c1bd9520466d26ed9e543adc6
+      - name: test
+        image: gcr.io/gcp-poc-321808/aswin@sha256:7545d80f3ec710496703cbf6d9ac13c2e1d2406c1bd9520466d26ed9e543adc6
         imagePullPolicy: Always
         resources: {}
         terminationMessagePath: /dev/termination-log
