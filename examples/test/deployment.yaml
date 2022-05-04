@@ -25,16 +25,6 @@ spec:
       containers:
       - image: gcr.io/gcp-poc-321808/aswin@sha256:7545d80f3ec710496703cbf6d9ac13c2e1d2406c1bd9520466d26ed9e543adc6
         imagePullPolicy: Always
-        env:
-          - name: first-secret
-            valueFrom:
-              secretKeyRef:
-                name: test-cluster-secret
-                key: value2
-                optional: false
-        envFrom:
-          - secret
-        name: nginx
         resources: {}
         terminationMessagePath: /dev/termination-log
         terminationMessagePolicy: File
