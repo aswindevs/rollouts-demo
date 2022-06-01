@@ -1,6 +1,6 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Rollout
-namespace: argo-ns
+# namespace: argo-ns
 metadata:
   name: traefik-rollout
 spec:
