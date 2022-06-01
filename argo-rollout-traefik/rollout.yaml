@@ -5,7 +5,6 @@ metadata:
   name: traefik-rollout
 spec:
   replicas: 5
-  revisionHistoryLimit: 2
   selector:
     matchLabels:
       app: traefik-rollout
