@@ -1,0 +1,55 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Rollout
+namespace: argo-ns
+metadata:
+  name: traefik-rollout
+spec:
+  replicas: 5
+  revisionHistoryLimit: 2
+  selector:
+    matchLabels:
+      app: traefik-rollout
+  template:
+    metadata:
+      labels:
+        app: traefik-rollout
+    spec:
+      containers:
+      - name: traefik-rollout
+        image: argoproj/rollouts-demo:blue
+        ports:
+        - name: http
+          containerPort: 8080
+          protocol: TCP
+        resources:
+          requests:
+            memory: 32Mi
+            cpu: 5m
+  strategy:
+    canary:
+      canaryService: traefik-rollout-canary
+      stableService: traefik-rollout-stable
+      trafficRouting:
+        traefik:
+          weightedTraefikServiceName: traefik-service # specify traefikService resource name that we have created before
+      # analysis:
+      #   startingStep: 1   # index of step list, of when to start this analysis
+      #   templates:
+      #   - templateName: istio-success-rate
+      #   args:             # arguments allow AnalysisTemplates to be re-used
+      #   - name: service 
+      #     value: canary
+      #   - name: namespace
+      #     valueFrom:
+      #       fieldRef:
+      #         fieldPath: metadata.namespace
+      steps:
+      - setWeight: 30
+      - pause: {}
+      - setWeight: 40
+      - pause: {duration: 10}
+      - setWeight: 60
+      - pause: {duration: 10}
+      - setWeight: 80
+      - pause: {duration: 10}
+

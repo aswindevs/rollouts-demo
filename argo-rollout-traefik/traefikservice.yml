@@ -1,0 +1,13 @@
+
+apiVersion: traefik.containo.us/v1alpha1
+kind: TraefikService
+metadata:
+  name: traefik-service
+  namespace: traefik
+spec:
+  weighted:
+    services:
+      - name: traefik-rollout-canary # k8s service name that you need to create for stable application version
+        port: 80
+      - name: traefik-rollout-stable # k8s service name that you need to create for new application version
+        port: 80
